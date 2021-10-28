@@ -13,7 +13,7 @@ class ResponseV2ContractorInvitesScenarios extends BaseResponse
     public string $name;
 
     /** @var ScenarioField[] */
-    public array  $templateFields;
+    public array $templateFields;
 
     /**
      * @inheritdoc
@@ -27,7 +27,7 @@ class ResponseV2ContractorInvitesScenarios extends BaseResponse
 
         $fields = [];
         foreach ($data['template_fields'] as $field) {
-            $fields = new ScenarioField($field);
+            $fields[] = new ScenarioField($field);
         }
         $responseDto->templateFields = $fields;
 

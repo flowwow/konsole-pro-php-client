@@ -27,16 +27,16 @@ class ResponseV2ContractorInvites extends BaseResponse
     {
         $data                        = self::getDataByResponse($response);
         $responseDto                 = new self();
-        $responseDto->id             = (int)$data['id'];
+        $responseDto->id             = $data['id'];
         $responseDto->name           = $data['name'];
         $responseDto->phone          = $data['phone'];
         $responseDto->scenarioId     = $data['scenario_id'];
         $responseDto->status         = $data['status'];
         $responseDto->cancelled      = $data['cancelled'];
-        $responseDto->created        = (int)$data['created'];
-        $responseDto->updated        = (int)$data['updated'];
+        $responseDto->created        = $data['created'];
+        $responseDto->updated        = $data['updated'];
         $responseDto->templateFields = $data['template_fields'];
-        $responseDto->contractorId   = (int)$data['contractor_id'];
+        $responseDto->contractorId   = $data['contractor_id'];
 
         return $responseDto;
     }
