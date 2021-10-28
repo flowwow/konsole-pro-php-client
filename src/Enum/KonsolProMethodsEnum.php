@@ -7,6 +7,9 @@ namespace Flowwow\ConsolePro\Enum;
  */
 class KonsolProMethodsEnum
 {
-    /** приглашение нового исполнителя */
-    const V2_CONTRACTOR_INVITES = 'v2/contractor_invites';
+    /** Создание нового приглашения */
+    const V2_CONTRACTOR_INVITES_CREATE = 'v2/contractor_invites';
+
+    /** Запросить сценарии */
+    const V2_CONTRACTOR_INVITES_SCENARIOS = 'v2/contractor_invites/scenarios';
 }
