@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ResponseV2GetDocuments extends BaseResponse
 {
-    /** @var ScenarioField[] */
+    /** @var Doc[] */
     public array $docs;
 
     /**
