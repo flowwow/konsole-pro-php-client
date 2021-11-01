@@ -9,6 +9,9 @@ class Contractor extends DataTransferObject
     public int     $id;
     public string  $first_name;
     public string  $last_name;
+    public string  $patronymic;
+    public string  $citizenship;
+    public string  $sex;
     public string  $phone;
     public ?string $email = null;
     public string  $inn;
