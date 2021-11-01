@@ -1,14 +1,15 @@
 <?php
 
-namespace Flowwow\ConsolePro\Response;
+namespace Flowwow\KonsolPro\Response;
 
-use Flowwow\ConsolePro\Exception\KonsolProException;
+use Flowwow\KonsolPro\Exception\KonsolProException;
 use Psr\Http\Message\ResponseInterface;
+use Spatie\DataTransferObject\DataTransferObject;
 
 /**
  * DTO-объект для ответа api/latest.json
  */
-abstract class BaseResponse
+class BaseResponse extends DataTransferObject
 {
     /**
      * Возвращает Response Dto, на основе http response
@@ -16,7 +17,12 @@ abstract class BaseResponse
      * @return static
      * @throws KonsolProException
      */
-    abstract public static function fromResponse(ResponseInterface $response): self;
+    public static function fromResponse(ResponseInterface $response): self
+    {
+        $data = self::getDataByResponse($response);
+
+        return new self($data);
+    }
 
     /**
      * Парсинг ответа

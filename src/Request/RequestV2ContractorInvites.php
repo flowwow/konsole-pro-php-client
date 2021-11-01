@@ -1,6 +1,6 @@
 <?php
 
-namespace Flowwow\ConsolePro\Request;
+namespace Flowwow\KonsolPro\Request;
 
 use Spatie\DataTransferObject\DataTransferObject;
 

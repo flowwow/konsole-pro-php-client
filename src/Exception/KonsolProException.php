@@ -1,6 +1,6 @@
 <?php
 
-namespace Flowwow\ConsolePro\Exception;
+namespace Flowwow\KonsolPro\Exception;
 
 use Exception;
 

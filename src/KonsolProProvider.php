@@ -1,11 +1,14 @@
 <?php
 
-namespace Flowwow\ConsolePro;
+namespace Flowwow\KonsolPro;
 
-use Flowwow\ConsolePro\Enum\KonsolProMethodsEnum;
-use Flowwow\ConsolePro\Exception\KonsolProException;
-use Flowwow\ConsolePro\Request\RequestV2ContractorInvites;
-use Flowwow\ConsolePro\Response\ResponseV2ContractorInvites;
+use Flowwow\KonsolPro\Enum\KonsolProMethodsEnum;
+use Flowwow\KonsolPro\Exception\KonsolProException;
+use Flowwow\KonsolPro\Request\RequestV2ContractorInvites;
+use Flowwow\KonsolPro\Response\ResponseV2ContractorInvites;
+use Flowwow\KonsolPro\Response\ResponseV2ContractorInvitesScenarios;
+use Flowwow\KonsolPro\Response\ResponseV2GetContractors;
+use Flowwow\KonsolPro\Response\ResponseV2GetDocuments;
 
 class KonsolProProvider
 {
@@ -21,11 +24,12 @@ class KonsolProProvider
     }
 
     /**
-     * @param array $fields
+     * Создание нового приглашения
+     * @param RequestV2ContractorInvites $requestData
      * @return ResponseV2ContractorInvites
      * @throws KonsolProException
      */
-    public function contractorInvites(RequestV2ContractorInvites $requestData): ResponseV2ContractorInvites
+    public function createContractorInvite(RequestV2ContractorInvites $requestData): ResponseV2ContractorInvites
     {
         $response = $this->client->request(
             KonsolProClient::POST_METHOD,
@@ -34,5 +38,56 @@ class KonsolProProvider
         );
 
         return ResponseV2ContractorInvites::fromResponse($response);
+    }
+
+    /**
+     * Запросить сценарии
+     * @return ResponseV2ContractorInvitesScenarios
+     * @throws KonsolProException
+     */
+    public function getContractorInvitesScenarios(): ResponseV2ContractorInvitesScenarios
+    {
+        $response = $this->client->request(
+            KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_CONTRACTOR_INVITES_SCENARIOS
+        );
+
+        return ResponseV2ContractorInvitesScenarios::fromResponse($response);
+    }
+
+    /**
+     * Запросить все документы
+     * @param int $page
+     * @return ResponseV2GetDocuments
+     * @throws KonsolProException
+     */
+    public function getDocuments(int $page = 1): ResponseV2GetDocuments
+    {
+        $response = $this->client->request(
+            KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_DOCUMENTS,
+            [],
+            ['page' => $page]
+        );
+
+        return ResponseV2GetDocuments::fromResponse($response);
+    }
+
+    /**
+     * Запросить все документы
+     * @param int $page
+     * @return ResponseV2GetContractors
+     * @throws KonsolProException
+     */
+    public function getContractors(int $page = 1): ResponseV2GetContractors
+    {
+        $response = $this->client->request(
+            KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_CONTRACTORS,
+            [],
+            ['page' => $page]
+        );
+
+        return ResponseV2GetContractors::fromResponse($response);
     }
 }

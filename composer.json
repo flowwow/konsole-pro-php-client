@@ -1,6 +1,6 @@
 {
-    "name": "flowwow/console-pro",
-    "description": "console pro client",
+    "name": "flowwow/konsol-pro",
+    "description": "konsol pro client",
     "license": "MIT",
     "authors": [
         {
@@ -9,8 +9,8 @@
         }
     ],
     "keywords": [
-        "console pro api",
-        "console pro"
+        "konsol pro api",
+        "konsol pro"
     ],
     "require": {
         "php": ">=7.4",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Flowwow\\ConsolePro\\": "src"
+            "Flowwow\\KonsolPro\\": "src"
         }
     },
     "scripts": {
