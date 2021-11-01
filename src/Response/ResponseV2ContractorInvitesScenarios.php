@@ -1,6 +1,6 @@
 <?php
 
-namespace Flowwow\ConsolePro\Response;
+namespace Flowwow\KonsolPro\Response;
 
 use Psr\Http\Message\ResponseInterface;
 

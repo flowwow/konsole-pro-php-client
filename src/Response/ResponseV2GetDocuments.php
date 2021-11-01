@@ -1,6 +1,6 @@
 <?php
 
-namespace Flowwow\ConsolePro\Response;
+namespace Flowwow\KonsolPro\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ResponseV2GetDocuments extends BaseResponse
 {
-    /** @var Doc[] */
+    /** @var \Flowwow\KonsolPro\Response\Doc[] */
     public array $docs;
 
     /**
@@ -17,28 +17,8 @@ class ResponseV2GetDocuments extends BaseResponse
      */
     public static function fromResponse(ResponseInterface $response): self
     {
-        $data        = self::getDataByResponse($response);
-        $responseDto = new self();
+        $data = self::getDataByResponse($response);
 
-        $docs = [];
-        foreach ($data as $docData) {
-            $docs[] = new Doc([
-                'id'           => $docData['id'],
-                'status'       => $docData['status'],
-                'title'        => $docData['title'],
-                'date'         => $docData['date'],
-                'contractorId' => $docData['contractor_id'],
-                'contractId'   => $docData['contract_id'],
-                'kind'         => $docData['kind'],
-                'templateId'   => $docData['template_id'],
-                'number'       => $docData['number'],
-                'url'          => $docData['url'],
-                'data'         => $docData['data'],
-                'created'      => $docData['created'],
-            ]);
-        }
-        $responseDto->docs = $docs;
-
-        return $responseDto;
+        return new self(['docs' => $data]);
     }
 }

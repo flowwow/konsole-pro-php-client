@@ -1,6 +1,6 @@
 <?php
 
-namespace Flowwow\ConsolePro\Enum;
+namespace Flowwow\KonsolPro\Enum;
 
 /**
  * Список методов api konsol pro

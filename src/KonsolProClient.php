@@ -1,8 +1,8 @@
 <?php
 
-namespace Flowwow\ConsolePro;
+namespace Flowwow\KonsolPro;
 
-use Flowwow\ConsolePro\Exception\KonsolProException;
+use Flowwow\KonsolPro\Exception\KonsolProException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;

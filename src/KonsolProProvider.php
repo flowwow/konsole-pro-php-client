@@ -1,13 +1,13 @@
 <?php
 
-namespace Flowwow\ConsolePro;
+namespace Flowwow\KonsolPro;
 
-use Flowwow\ConsolePro\Enum\KonsolProMethodsEnum;
-use Flowwow\ConsolePro\Exception\KonsolProException;
-use Flowwow\ConsolePro\Request\RequestV2ContractorInvites;
-use Flowwow\ConsolePro\Response\ResponseV2ContractorInvites;
-use Flowwow\ConsolePro\Response\ResponseV2ContractorInvitesScenarios;
-use Flowwow\ConsolePro\Response\ResponseV2GetDocuments;
+use Flowwow\KonsolPro\Enum\KonsolProMethodsEnum;
+use Flowwow\KonsolPro\Exception\KonsolProException;
+use Flowwow\KonsolPro\Request\RequestV2ContractorInvites;
+use Flowwow\KonsolPro\Response\ResponseV2ContractorInvites;
+use Flowwow\KonsolPro\Response\ResponseV2ContractorInvitesScenarios;
+use Flowwow\KonsolPro\Response\ResponseV2GetDocuments;
 
 class KonsolProProvider
 {

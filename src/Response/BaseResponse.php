@@ -1,14 +1,15 @@
 <?php
 
-namespace Flowwow\ConsolePro\Response;
+namespace Flowwow\KonsolPro\Response;
 
 use Flowwow\ConsolePro\Exception\KonsolProException;
 use Psr\Http\Message\ResponseInterface;
+use Spatie\DataTransferObject\DataTransferObject;
 
 /**
  * DTO-объект для ответа api/latest.json
  */
-abstract class BaseResponse
+abstract class BaseResponse extends DataTransferObject
 {
     /**
      * Возвращает Response Dto, на основе http response

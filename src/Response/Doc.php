@@ -1,6 +1,6 @@
 <?php
 
-namespace Flowwow\ConsolePro\Response;
+namespace Flowwow\KonsolPro\Response;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
@@ -10,10 +10,10 @@ class Doc extends DataTransferObject
     public string $status;
     public string $title;
     public string $date;
-    public int    $contractorId;
-    public ?int   $contractId = null;
+    public int    $contractor_id;
+    public ?int   $contract_id = null;
     public string $kind;
-    public int    $templateId;
+    public int    $template_id;
     public int    $number;
     public string $url;
     public array  $data;
