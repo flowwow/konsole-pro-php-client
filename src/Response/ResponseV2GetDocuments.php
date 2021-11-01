@@ -18,6 +18,9 @@ class ResponseV2GetDocuments extends BaseResponse
     public static function fromResponse(ResponseInterface $response): self
     {
         $data = self::getDataByResponse($response);
+        foreach ($data as $doc) {
+            $doc['number'] = (string)$doc['number'];
+        }
 
         return new self(['docs' => $data]);
     }
