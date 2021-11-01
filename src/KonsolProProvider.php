@@ -7,6 +7,7 @@ use Flowwow\KonsolPro\Exception\KonsolProException;
 use Flowwow\KonsolPro\Request\RequestV2ContractorInvites;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvites;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvitesScenarios;
+use Flowwow\KonsolPro\Response\ResponseV2GetContractors;
 use Flowwow\KonsolPro\Response\ResponseV2GetDocuments;
 
 class KonsolProProvider
@@ -70,5 +71,23 @@ class KonsolProProvider
         );
 
         return ResponseV2GetDocuments::fromResponse($response);
+    }
+
+    /**
+     * Запросить все документы
+     * @param int $page
+     * @return ResponseV2GetContractors
+     * @throws KonsolProException
+     */
+    public function getContractors(int $page = 1): ResponseV2GetContractors
+    {
+        $response = $this->client->request(
+            KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_CONTRACTORS,
+            [],
+            ['page' => $page]
+        );
+
+        return ResponseV2GetContractors::fromResponse($response);
     }
 }

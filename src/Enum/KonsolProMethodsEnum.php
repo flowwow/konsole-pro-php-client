@@ -15,4 +15,7 @@ class KonsolProMethodsEnum
 
     /** Документы и договоры */
     const V2_DOCUMENTS = 'v2/documents';
+
+    /** Исполнители */
+    const V2_CONTRACTORS = 'v2/contractors';
 }
