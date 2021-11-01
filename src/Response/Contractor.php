@@ -13,9 +13,9 @@ class Contractor extends DataTransferObject
     public string $email;
     public string $inn;
     public string $kind;
-    public int    $created;
     public bool   $suspended;
     public array  $contracts;
-    public array  $passport;
+    public array  $id_cards;
+    public string $moi_nalog_status;
     public array  $bank_details;
 }
