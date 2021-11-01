@@ -12,32 +12,11 @@ class ResponseV2ContractorInvites extends BaseResponse
     public int    $id;
     public string $name;
     public string $phone;
-    public string $scenarioId;
+    public string $scenario_id;
     public string $status;
     public bool   $cancelled;
     public int    $created;
     public int    $updated;
-    public array  $templateFields;
-    public int    $contractorId;
-
-    /**
-     * @inheritdoc
-     */
-    public static function fromResponse(ResponseInterface $response): self
-    {
-        $data                        = self::getDataByResponse($response);
-        $responseDto                 = new self();
-        $responseDto->id             = $data['id'];
-        $responseDto->name           = $data['name'];
-        $responseDto->phone          = $data['phone'];
-        $responseDto->scenarioId     = $data['scenario_id'];
-        $responseDto->status         = $data['status'];
-        $responseDto->cancelled      = $data['cancelled'];
-        $responseDto->created        = $data['created'];
-        $responseDto->updated        = $data['updated'];
-        $responseDto->templateFields = $data['template_fields'];
-        $responseDto->contractorId   = $data['contractor_id'];
-
-        return $responseDto;
-    }
+    public array  $template_fields;
+    public int    $contractor_id;
 }
