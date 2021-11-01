@@ -14,7 +14,7 @@ class Doc extends DataTransferObject
     public ?int   $contract_id = null;
     public string $kind;
     public int    $template_id;
-    public int    $number;
+    public string $number;
     public string $url;
     public array  $data;
     public int    $created;
