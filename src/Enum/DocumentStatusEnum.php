@@ -16,6 +16,6 @@ class DocumentStatusEnum
     /** подписан исполнителем */
     const SIGNED_BY_COMNTRACTOR = 'signed_by_contractor';
 
-    /** подписан исполнителем */
-    const SIGNED_BY_ALL = 'подписан обеими сторонами';
+    /** подписан обеими сторонами */
+    const SIGNED_BY_ALL = 'signed_by_all';
 }
