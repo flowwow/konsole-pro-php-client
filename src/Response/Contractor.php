@@ -12,7 +12,7 @@ class Contractor extends DataTransferObject
     public string  $patronymic;
     public string  $citizenship;
     public string  $sex;
-    public string  $phone;
+    public ?string $phone = null;
     public ?string $email = null;
     public string  $inn;
     public string  $kind;
