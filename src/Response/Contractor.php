@@ -20,5 +20,5 @@ class Contractor extends DataTransferObject
     public array   $contracts;
     public array   $id_cards;
     public string  $moi_nalog_status;
-    public array   $bank_details;
+    public ?array  $bank_details = null;
 }
