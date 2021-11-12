@@ -21,7 +21,7 @@ class BaseResponse extends DataTransferObject
     {
         $data = self::getDataByResponse($response);
 
-        return new self($data);
+        return new static($data);
     }
 
     /**
