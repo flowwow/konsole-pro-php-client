@@ -13,6 +13,7 @@ class Doc extends DataTransferObject
     public int     $contractor_id;
     public ?int    $contract_id = null;
     public string  $kind;
+    public ?string $require_sign = null;
     public ?int    $template_id = null;
     public         $number;
     public string  $url;
