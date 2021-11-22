@@ -7,6 +7,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 class Contractor extends DataTransferObject
 {
     public int     $id;
+    public int     $created;
     public string  $first_name;
     public string  $last_name;
     public string  $patronymic;
