@@ -18,4 +18,7 @@ class KonsolProMethodsEnum
 
     /** Исполнители */
     const V2_CONTRACTORS = 'v2/contractors';
+
+    /** Акты */
+    const V2_ACTS = 'v2/acts';
 }

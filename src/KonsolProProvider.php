@@ -5,8 +5,10 @@ namespace Flowwow\KonsolPro;
 use Flowwow\KonsolPro\Enum\KonsolProMethodsEnum;
 use Flowwow\KonsolPro\Exception\KonsolProException;
 use Flowwow\KonsolPro\Request\RequestV2ContractorInvites;
+use Flowwow\KonsolPro\Request\RequestV2GetActs;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvites;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvitesScenarios;
+use Flowwow\KonsolPro\Response\ResponseV2GetActs;
 use Flowwow\KonsolPro\Response\ResponseV2GetContractors;
 use Flowwow\KonsolPro\Response\ResponseV2GetDocuments;
 
@@ -89,5 +91,25 @@ class KonsolProProvider
         );
 
         return ResponseV2GetContractors::fromResponse($response);
+    }
+
+    /**
+     * Запросить все акты
+     * @param int $page
+     * @param RequestV2GetActs|null $search
+     * @return ResponseV2GetActs
+     * @throws KonsolProException
+     */
+    public function getActs(int $page = 1, ?RequestV2GetActs $search = null): ResponseV2GetActs
+    {
+        $searchParams = $search ? $search->preparedArray() : [];
+        $response     = $this->client->request(
+            KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_ACTS,
+            [],
+            ['page' => $page] + $searchParams
+        );
+
+        return ResponseV2GetActs::fromResponse($response);
     }
 }
