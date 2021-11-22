@@ -12,8 +12,9 @@ class KonsolProClient
     /** URI konsol api */
     const URI = 'https://api.konsol.pro';
 
-    const GET_METHOD  = 'GET';
-    const POST_METHOD = 'POST';
+    const GET_METHOD    = 'GET';
+    const POST_METHOD   = 'POST';
+    const DELETE_METHOD = 'DELETE';
 
     private Client $httpClient;
     private string $token;

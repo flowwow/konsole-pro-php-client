@@ -112,4 +112,17 @@ class KonsolProProvider
 
         return ResponseV2GetActs::fromResponse($response);
     }
+
+    /**
+     * Удалить акт
+     * @param int $actId
+     * @throws KonsolProException
+     */
+    public function removeAct(int $actId): void
+    {
+        $this->client->request(
+            KonsolProClient::DELETE_METHOD,
+            KonsolProMethodsEnum::V2_ACTS . "/{$actId}"
+        );
+    }
 }
