@@ -76,7 +76,7 @@ class KonsolProProvider
     }
 
     /**
-     * Запросить все документы
+     * Запросить всех исполнителей
      * @param int $page
      * @return ResponseV2GetContractors
      * @throws KonsolProException
@@ -89,6 +89,24 @@ class KonsolProProvider
             [],
             ['page' => $page]
         );
+
+        return ResponseV2GetContractors::fromResponse($response);
+    }
+
+    /**
+     * Запросить всех исполнителей по телефону
+     * @param array $phones - Массив с номерами телефонов
+     * @param int $page     - Номер страницы постраничной навигации
+     * @return ResponseV2GetContractors
+     * @throws KonsolProException
+     */
+    public function getContractorsByPhones(array $phones, int $page = 1): ResponseV2GetContractors
+    {
+        $phones   = implode(',', $phones);
+        $response = $this->client->request(KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_CONTRACTORS,
+            [],
+            ['phone' => $phones, 'page' => $page]);
 
         return ResponseV2GetContractors::fromResponse($response);
     }
