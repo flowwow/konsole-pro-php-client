@@ -4,6 +4,7 @@ namespace Flowwow\KonsolPro;
 
 use Flowwow\KonsolPro\Enum\KonsolProMethodsEnum;
 use Flowwow\KonsolPro\Exception\KonsolProException;
+use Flowwow\KonsolPro\Request\RequestContractByPhone;
 use Flowwow\KonsolPro\Request\RequestV2ContractorInvites;
 use Flowwow\KonsolPro\Request\RequestV2GetActs;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvites;
@@ -16,8 +17,6 @@ class KonsolProProvider
 {
     /** Клиент Консоль.Про */
     private KonsolProClient $client;
-    /** шаблон проверки номера */
-    private string $phoneCheckPattern = '/^[0-9]{11,15}$/';
 
     /**
      * @param string $token
@@ -98,19 +97,17 @@ class KonsolProProvider
 
     /**
      * Запросить всех исполнителей по телефону
-     * @param array $phones - Массив с номерами телефонов ['70000000000','70000000001']
-     * @param int $page     - Номер страницы постраничной навигации
+     * @param RequestContractByPhone $request
      * @return ResponseV2GetContractors
      * @throws KonsolProException
      */
-    public function getContractorsByPhones(array $phones, int $page = 1): ResponseV2GetContractors
+    public function getContractorsByPhones(RequestContractByPhone $request): ResponseV2GetContractors
     {
-        $this->validatePhones($phones);
-        $phones   = implode(',', $phones);
         $response = $this->client->request(KonsolProClient::GET_METHOD,
             KonsolProMethodsEnum::V2_CONTRACTORS,
             [],
-            ['phone' => $phones, 'page' => $page]);
+            $request->preparedArray()
+        );
 
         return ResponseV2GetContractors::fromResponse($response);
     }
@@ -146,20 +143,5 @@ class KonsolProProvider
             KonsolProClient::DELETE_METHOD,
             KonsolProMethodsEnum::V2_ACTS . "/{$actId}"
         );
-    }
-
-    /**
-     * Валидируем телефоны
-     * @param array $phones - Массив с номерами телефонов ['70000000000','70000000001']
-     * @throws KonsolProException
-     */
-    private function validatePhones(array $phones)
-    {
-        foreach ($phones as $phone) {
-            preg_match($this->phoneCheckPattern, (string)$phone, $match);
-            if (!isset($phone[0])) {
-                throw new KonsolProException("Номер телефона {$phone} не прошел валидацию");
-            }
-        }
     }
 }
