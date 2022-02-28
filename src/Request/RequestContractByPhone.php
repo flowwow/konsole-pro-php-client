@@ -68,7 +68,7 @@ class RequestContractByPhone extends DataTransferObject
      */
     private function validatePhone(string $phone)
     {
-        if (!preg_match($this->phoneCheckPattern, (string)$phone)) {
+        if (!preg_match($this->phoneCheckPattern, $phone)) {
             throw new KonsolProException("Номер телефона {$phone} не прошел валидацию");
         }
     }
