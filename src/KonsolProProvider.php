@@ -14,7 +14,10 @@ use Flowwow\KonsolPro\Response\ResponseV2GetDocuments;
 
 class KonsolProProvider
 {
+    /** Клиент Консоль.Про */
     private KonsolProClient $client;
+    /** шаблон проверки номера */
+    private string $phoneCheckPattern = '/^[0-9]{11,15}$/';
 
     /**
      * @param string $token
@@ -95,13 +98,14 @@ class KonsolProProvider
 
     /**
      * Запросить всех исполнителей по телефону
-     * @param array $phones - Массив с номерами телефонов
+     * @param array $phones - Массив с номерами телефонов ['70000000000','70000000001']
      * @param int $page     - Номер страницы постраничной навигации
      * @return ResponseV2GetContractors
      * @throws KonsolProException
      */
     public function getContractorsByPhones(array $phones, int $page = 1): ResponseV2GetContractors
     {
+        $this->validatePhones($phones);
         $phones   = implode(',', $phones);
         $response = $this->client->request(KonsolProClient::GET_METHOD,
             KonsolProMethodsEnum::V2_CONTRACTORS,
@@ -142,5 +146,20 @@ class KonsolProProvider
             KonsolProClient::DELETE_METHOD,
             KonsolProMethodsEnum::V2_ACTS . "/{$actId}"
         );
+    }
+
+    /**
+     * Валидируем телефоны
+     * @param array $phones - Массив с номерами телефонов ['70000000000','70000000001']
+     * @throws KonsolProException
+     */
+    private function validatePhones(array $phones)
+    {
+        foreach ($phones as $phone) {
+            preg_match($this->phoneCheckPattern, (string)$phone, $match);
+            if (!isset($phone[0])) {
+                throw new KonsolProException("Номер телефона {$phone} не прошел валидацию");
+            }
+        }
     }
 }
