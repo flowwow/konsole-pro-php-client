@@ -4,6 +4,7 @@ namespace Flowwow\KonsolPro;
 
 use Flowwow\KonsolPro\Enum\KonsolProMethodsEnum;
 use Flowwow\KonsolPro\Exception\KonsolProException;
+use Flowwow\KonsolPro\Request\RequestContractByPhone;
 use Flowwow\KonsolPro\Request\RequestV2ContractorInvites;
 use Flowwow\KonsolPro\Request\RequestV2GetActs;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvites;
@@ -14,6 +15,7 @@ use Flowwow\KonsolPro\Response\ResponseV2GetDocuments;
 
 class KonsolProProvider
 {
+    /** Клиент Консоль.Про */
     private KonsolProClient $client;
 
     /**
@@ -76,7 +78,7 @@ class KonsolProProvider
     }
 
     /**
-     * Запросить все документы
+     * Запросить всех исполнителей
      * @param int $page
      * @return ResponseV2GetContractors
      * @throws KonsolProException
@@ -88,6 +90,23 @@ class KonsolProProvider
             KonsolProMethodsEnum::V2_CONTRACTORS,
             [],
             ['page' => $page]
+        );
+
+        return ResponseV2GetContractors::fromResponse($response);
+    }
+
+    /**
+     * Запросить всех исполнителей по телефону
+     * @param RequestContractByPhone $request
+     * @return ResponseV2GetContractors
+     * @throws KonsolProException
+     */
+    public function getContractorsByPhones(RequestContractByPhone $request): ResponseV2GetContractors
+    {
+        $response = $this->client->request(KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_CONTRACTORS,
+            [],
+            $request->preparedArray()
         );
 
         return ResponseV2GetContractors::fromResponse($response);
