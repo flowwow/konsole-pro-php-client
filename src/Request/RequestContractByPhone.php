@@ -26,35 +26,50 @@ class RequestContractByPhone extends DataTransferObject
     public function preparedArray(): array
     {
         $this->validatePhones();
-
-        return [
-            'phone' => implode(',', $this->phones),
-            'page'  => $this->page
+        $preparedArray = [
+            'page' => $this->page
         ];
+        if ($this->phones) {
+            $preparedArray['phone'] = implode(',', $this->phones);
+        }
+
+        return $preparedArray;
     }
 
     /**
      * Добавляем телефон в внутренний массив телефонов
      * @param string $phone
      * @return $this
+     * @throws KonsolProException
      */
     public function addPhone(string $phone): RequestContractByPhone
     {
+        $this->validatePhone($phone);
         $this->phones[] = $phone;
 
         return $this;
     }
 
     /**
-     * Валидируем телефоны
+     * Валидируем весь массив телефонов
      * @throws KonsolProException
      */
     private function validatePhones()
     {
         foreach ($this->phones as $phone) {
-            if (!preg_match($this->phoneCheckPattern, (string)$phone)) {
-                throw new KonsolProException("Номер телефона {$phone} не прошел валидацию");
-            }
+            $this->validatePhone($phone);
+        }
+    }
+
+    /**
+     * Валидируем отдельный телефон
+     * @param string $phone
+     * @throws KonsolProException
+     */
+    private function validatePhone(string $phone)
+    {
+        if (!preg_match($this->phoneCheckPattern, (string)$phone)) {
+            throw new KonsolProException("Номер телефона {$phone} не прошел валидацию");
         }
     }
 }
