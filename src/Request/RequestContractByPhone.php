@@ -6,12 +6,15 @@ namespace Flowwow\KonsolPro\Request;
 use Flowwow\KonsolPro\Exception\KonsolProException;
 use Spatie\DataTransferObject\DataTransferObject;
 
+/**
+ * DTO-объект для запроса v2/getContractorsByPhones
+ */
 class RequestContractByPhone extends DataTransferObject
 {
     /** шаблон проверки номера */
     private string $phoneCheckPattern = '/^[0-9]{11,15}$/';
     /** Массив телефонов */
-    public array   $phones;
+    public array   $phones = [];
     /** Пагинация запроса */
     public int     $page = 1;
 
@@ -49,8 +52,7 @@ class RequestContractByPhone extends DataTransferObject
     private function validatePhones()
     {
         foreach ($this->phones as $phone) {
-            preg_match($this->phoneCheckPattern, (string)$phone, $match);
-            if (!isset($phone[0])) {
+            if (!preg_match($this->phoneCheckPattern, (string)$phone)) {
                 throw new KonsolProException("Номер телефона {$phone} не прошел валидацию");
             }
         }
