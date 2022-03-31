@@ -19,4 +19,5 @@ class Doc extends DataTransferObject
     public string  $url;
     public array   $data;
     public int     $created;
+    public ?int    $outer_id = null;
 }
