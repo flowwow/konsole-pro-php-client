@@ -4,12 +4,12 @@ namespace Flowwow\KonsolPro\Response;
 
 use Flowwow\KonsolPro\Exception\KonsolProException;
 use Psr\Http\Message\ResponseInterface;
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 /**
  * DTO-объект для ответа api/latest.json
  */
-class BaseResponse extends DataTransferObject
+class BaseResponse extends FlexibleDataTransferObject
 {
     /**
      * Возвращает Response Dto, на основе http response

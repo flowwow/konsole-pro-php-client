@@ -2,9 +2,9 @@
 
 namespace Flowwow\KonsolPro\Response;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Act extends DataTransferObject
+class Act extends FlexibleDataTransferObject
 {
     public int     $id;
     public string  $title;
