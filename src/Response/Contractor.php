@@ -10,7 +10,7 @@ class Contractor extends FlexibleDataTransferObject
     public int     $created;
     public string  $first_name;
     public string  $last_name;
-    public string  $patronymic;
+    public ?string $patronymic              = null;
     public string  $citizenship;
     public ?string $sex                     = null;
     public ?string $phone                   = null;
