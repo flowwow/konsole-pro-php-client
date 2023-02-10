@@ -12,8 +12,9 @@ class Act extends FlexibleDataTransferObject
     public int     $contractor_id;
     public string  $start_date;
     public string  $end_date;
-    public ?string $outer_id   = null;
-    public int     $number;
+    public ?string $outer_id = null;
+    /** @var string|int */
+    public         $number;
     public array   $contract;
     public int     $created;
     public array   $contractor;
