@@ -7,11 +7,13 @@ use Flowwow\KonsolPro\Exception\KonsolProException;
 use Flowwow\KonsolPro\Request\RequestContractByPhone;
 use Flowwow\KonsolPro\Request\RequestV2ContractorInvites;
 use Flowwow\KonsolPro\Request\RequestV2GetActs;
+use Flowwow\KonsolPro\Request\RequestV2NominalAccountStatements;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvites;
 use Flowwow\KonsolPro\Response\ResponseV2ContractorInvitesScenarios;
 use Flowwow\KonsolPro\Response\ResponseV2GetActs;
 use Flowwow\KonsolPro\Response\ResponseV2GetContractors;
 use Flowwow\KonsolPro\Response\ResponseV2GetDocuments;
+use Flowwow\KonsolPro\Response\ResponseV2NominalAccountStatements;
 
 class KonsolProProvider
 {
@@ -139,9 +141,48 @@ class KonsolProProvider
      */
     public function removeAct(int $actId): void
     {
-        $this->client->request(
-            KonsolProClient::DELETE_METHOD,
-            KonsolProMethodsEnum::V2_ACTS . "/{$actId}"
-        );
+        $this->client->request(KonsolProClient::DELETE_METHOD, KonsolProMethodsEnum::V2_ACTS . "/{$actId}");
+    }
+
+    /**
+     * Запросить выписку
+     * @param RequestV2NominalAccountStatements $requestData
+     * @return ResponseV2NominalAccountStatements
+     * @throws KonsolProException
+     */
+    public function requestStatements(RequestV2NominalAccountStatements $requestData
+    ): ResponseV2NominalAccountStatements {
+        $response =
+            $this->client->request(KonsolProClient::POST_METHOD, KonsolProMethodsEnum::V2_NOMINAL_ACCOUNT_STATEMENTS,
+                $requestData->preparedArray());
+
+        return ResponseV2NominalAccountStatements::fromResponse($response);
+    }
+
+    /**
+     * Запросить выписку
+     * @param int $statementId
+     * @return ResponseV2NominalAccountStatements
+     * @throws KonsolProException
+     */
+    public function getStatement(int $statementId): ResponseV2NominalAccountStatements
+    {
+        $response = $this->client->request(KonsolProClient::GET_METHOD,
+            KonsolProMethodsEnum::V2_NOMINAL_ACCOUNT_STATEMENTS . "/$statementId");
+
+        return ResponseV2NominalAccountStatements::fromResponse($response);
+    }
+
+    /**
+     * Подгрузка контента выписки
+     * @param string $url
+     * @return string
+     * @throws KonsolProException
+     */
+    public function getStatementContent(string $url): string
+    {
+        $response = $this->client->request(KonsolProClient::GET_METHOD, $url);
+
+        return $response->getBody()->getContents();
     }
 }

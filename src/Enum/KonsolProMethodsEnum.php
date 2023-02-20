@@ -21,4 +21,7 @@ class KonsolProMethodsEnum
 
     /** Акты */
     const V2_ACTS = 'v2/acts';
+
+    /** Выписки */
+    const V2_NOMINAL_ACCOUNT_STATEMENTS = 'v2/nominal_account/statements';
 }
