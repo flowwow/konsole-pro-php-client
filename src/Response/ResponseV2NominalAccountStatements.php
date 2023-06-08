@@ -12,5 +12,5 @@ class ResponseV2NominalAccountStatements extends BaseResponse
     public string  $date_to;
     public string  $format;
     public string  $status;
-    public ?string $url;
+    public ?string $url = null;
 }
