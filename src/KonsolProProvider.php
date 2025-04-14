@@ -64,16 +64,18 @@ class KonsolProProvider
     /**
      * Запросить все документы
      * @param int $page
+     * @param int $perPage Кол-во документов на странице
      * @return ResponseV2GetDocuments
      * @throws KonsolProException
+     * @see https://konsol.readme.io/reference/documents-all
      */
-    public function getDocuments(int $page = 1): ResponseV2GetDocuments
+    public function getDocuments(int $page = 1, int $perPage = 15): ResponseV2GetDocuments
     {
         $response = $this->client->request(
             KonsolProClient::GET_METHOD,
             KonsolProMethodsEnum::V2_DOCUMENTS,
             [],
-            ['page' => $page]
+            ['page' => $page, 'per' => $perPage]
         );
 
         return ResponseV2GetDocuments::fromResponse($response);
